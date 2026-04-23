@@ -1,89 +1,138 @@
-# Movie Review Webscraping Project
+# 🎬 Movie Review Sentiment Analysis (Rotten Tomatoes)
 
-## Overview
+## 📌 Project Overview
 
-This repository contains a Jupyter notebook **`scrap_movie_review.ipynb`** that:
-
-1. **Scrapes audience reviews** from Rotten Tomatoes for a given movie.
-2. **Saves** the raw review data to a CSV file.
-3. **Loads** the CSV into a pandas DataFrame.
-4. **Performs sentiment analysis** on each review using the HuggingFace model `cardiffnlp/twitter-roberta-base-sentiment-latest`.
-5. **Outputs** a final CSV that includes the sentiment label for every review.
-
-The notebook is fully self‑contained and walks you through each step with clear headings and code cells.
+This project scrapes audience reviews for a given movie from Rotten Tomatoes and performs sentiment analysis using a pre-trained NLP model. The final output includes structured review data along with sentiment labels (positive, neutral, negative).
 
 ---
 
-## Directory Structure
+## 🚀 Features
+
+* Scrapes **audience reviews** dynamically using Rotten Tomatoes API
+* Handles pagination to collect large volumes of reviews
+* Cleans and structures review data
+* Performs **sentiment analysis** using a transformer-based model
+* Exports results into CSV files for further analysis
+
+---
+
+## 🛠️ Tech Stack
+
+* **Python**
+* **Requests** – API calls
+* **Pandas** – Data manipulation
+* **Transformers (Hugging Face)** – Sentiment analysis model
+* **CSV** – Data storage
+
+---
+
+## 📂 Project Structure
 
 ```
-Movie_Review_webscraping_Project/
-│   scrap_movie_review.ipynb   # Main notebook
-│   README.md                  # <--- this file
-└───data/                     # (optional) place to store CSVs
+├── scraper.py                  # Main scraping script
+├── sentiment_analysis.py       # Sentiment analysis logic
+├── iron_man_audience_reviews.csv
+├── iron_man_reviews_with_sentiment.csv
+├── README.md
 ```
 
 ---
 
-## Prerequisites
+## ⚙️ Installation
 
-- **Python 3.12+** (the notebook was developed with Python 3.12).
-- **pip** (for installing packages).
-- An internet connection (to download the Rotten Tomatoes page and the HuggingFace model).
-
----
-
-## Installation
-
-Open a terminal in the project folder and run:
+1. Clone the repository:
 
 ```bash
-# Install required libraries (including tqdm & ipywidgets to silence warnings)
-pip install -q requests transformers torch pandas tqdm ipywidgets
+git clone https://github.com/your-username/movie-review-sentiment.git
+cd movie-review-sentiment
 ```
 
-If you plan to run many requests or larger batches, consider setting a HuggingFace token to avoid rate‑limit warnings:
+2. Install dependencies:
 
 ```bash
-# Replace <YOUR_TOKEN> with your actual HF token
-echo "HF_TOKEN=hf_<YOUR_TOKEN>" >> .env
+pip install -r requirements.txt
 ```
 
 ---
 
-## Usage
+## ▶️ Usage
 
-1. **Open the notebook** in Jupyter Lab / VS Code:
-   ```bash
-   jupyter notebook scrap_movie_review.ipynb
-   ```
-2. **Install dependencies** – run the first cell (the `!pip install …` line) if you haven’t already.
-3. **Configure the scraper** – edit the `MOVIE_NAME` and `REVIEW_COUNT` variables in the *Run the Scraper* cell.
-4. **Execute each cell sequentially**. The notebook prints progress information and saves:
-   - `iron_man_audience_reviews.csv` (raw data)
-   - `iron_man_reviews_with_sentiment.csv` (final data with sentiment)
-5. **Explore the results** – the notebook includes cells to display a preview, sentiment distribution, and to save the final CSV.
+1. Set the movie name and number of reviews:
 
----
+```python
+MOVIE_NAME = "iron_man"
+REVIEW_COUNT = 200
+```
 
-## Troubleshooting
+2. Run the script:
 
-| Issue | Suggested Fix |
-|-------|---------------|
-| `TqdmWarning: IProgress not found` | Ensure `ipywidgets` is installed (included in the install command). |
-| "Unauthenticated requests" warning from HuggingFace | Set `HF_TOKEN` as described above, then re‑run the model‑loading cell. |
-| No reviews collected | Verify the movie slug matches the Rotten Tomatoes URL (e.g., `iron_man` → `https://www.rottentomatoes.com/m/iron_man`). |
-| Kernel dies during sentiment analysis | Reduce `REVIEW_COUNT` or process reviews in batches. |
+```bash
+python scraper.py
+```
+
+3. Output files:
+
+* `iron_man_audience_reviews.csv`
+* `iron_man_reviews_with_sentiment.csv`
 
 ---
 
-## 👤 Author
+## 📊 Output Example
 
-**Dhanush Prasad**  
-[GitHub](https://github.com/dhanushprasad2003)
+| display_name | rating | review_text    | sentiment |
+| ------------ | ------ | -------------- | --------- |
+| John D       | STAR_5 | Amazing movie! | positive  |
+| Alex P       | STAR_3 | It was okay    | neutral   |
+| Sam K        | STAR_1 | Didn't like it | negative  |
 
 ---
 
-## 📄 License
+## 📈 Sentiment Results (Example)
 
-This project is for educational purposes.
+* **Positive:** 82%
+* **Neutral:** 11.5%
+* **Negative:** 6.5%
+
+---
+
+## 🧠 Model Used
+
+* `cardiffnlp/twitter-roberta-base-sentiment-latest`
+
+This model is fine-tuned for sentiment classification and performs well on short text such as reviews.
+
+---
+
+## ⚠️ Notes
+
+* Reviews are limited by API pagination
+* Some reviews may be empty or missing user details
+* Rate limiting is handled using delays between requests
+
+---
+
+## 🔮 Future Improvements
+
+* Add visualization (charts/dashboard)
+* Support multiple movies in one run
+* Deploy as a web app
+* Add advanced NLP (topic modeling, keyword extraction)
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Feel free to fork the repo and submit a pull request.
+
+---
+
+## 📜 License
+
+This project is open-source and available under the MIT License.
+
+---
+
+## 👨‍💻 Author
+
+**Your Name**
+GitHub: https://github.com/dhanushprasad2003
