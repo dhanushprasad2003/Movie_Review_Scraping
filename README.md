@@ -132,7 +132,7 @@ This project is open-source and available under the MIT License.
 
 ---
 
-## 👨‍💻 Author
+## 👤 Author
 
-**Your Name**
-GitHub: https://github.com/dhanushprasad2003
+**Dhanush Prasad**  
+[GitHub](https://github.com/dhanushprasad2003)
