@@ -77,10 +77,13 @@ echo "HF_TOKEN=hf_<YOUR_TOKEN>" >> .env
 
 ---
 
-## License
+## 👤 Author
 
-This project is provided **as‑is** for educational purposes. Feel free to adapt, extend, or integrate it into your own workflows.
+**Dhanush Prasad**  
+[GitHub](https://github.com/dhanushprasad2003)
 
 ---
 
-*Happy scraping and sentiment mining!*
+## 📄 License
+
+This project is for educational purposes.
